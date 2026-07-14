@@ -170,8 +170,44 @@ function HomeContent() {
 
   const displayedPalettes = filteredPalettes.slice(0, visibleCount);
 
+  // Define horizontal mosaic colors representing platform's full range
+  const mosaicColors = [
+    "#FDFBF7", "#D4AF37", "#1A1A1A", "#9B111E", "#D2B48C", "#4B0082", "#E6E6FA", "#008080",
+    "#39FF14", "#FFD1DC", "#FF5F1F", "#0B1026", "#0D0E15", "#22C55E", "#F97316", "#050B05",
+    "#1E40AF", "#F59E0B", "#F43F5E", "#C2410C", "#15803D", "#3730A3", "#FAF5FF", "#E0F2FE",
+    "#00E5FF", "#FF1493", "#EAB308", "#A5B4FC", "#C0C0C0", "#0369A1", "#FACC15", "#111827",
+    "#C2410C", "#D9F99D", "#FAF9F6", "#EA580C", "#FAF5FF", "#E9D5FF", "#F472B6", "#2DD4BF"
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+      {/* Horizontal Mosaic Brand Showcase Band */}
+      <div className="w-full overflow-hidden bg-slate-50 border border-slate-200 rounded-2xl p-2.5 relative flex flex-col gap-1 shadow-3xs">
+        <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 text-center mb-1 leading-none">
+          Live Mosaic Spectrum Showcase
+        </span>
+        <div className="flex gap-1 overflow-x-hidden select-none w-full justify-center">
+          <div className="flex gap-1 animate-[marquee_20s_linear_infinite] whitespace-nowrap">
+            {mosaicColors.concat(mosaicColors).map((color, idx) => (
+              <div
+                key={color + idx}
+                style={{ backgroundColor: color }}
+                className="w-4 h-4 rounded-xs shrink-0 transition-all duration-500 hover:scale-125"
+                title={color}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* CSS Keyframes for infinite mosaic marquee */}
+        <style jsx global>{`
+          @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+        `}</style>
+      </div>
 
       {/* Hero Header Section */}
       <div className="text-center max-w-3xl mx-auto space-y-4">

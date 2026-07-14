@@ -8,6 +8,7 @@ export interface Palette {
     accent: string;    // 10%
     text: string;
     ui: string;
+    [key: string]: string;
   };
   tags: string[]; // style/mood categories
   colorFamilies: string[]; // e.g., ["blue", "gray"]
@@ -16,6 +17,13 @@ export interface Palette {
   copies: number;
   favorites: number;
   isCustom?: boolean;
+  color_family?: string;
+  categories?: string[];
+  is_featured?: boolean;
+  is_editor_choice?: boolean;
+  view_count?: number;
+  copy_count?: number;
+  favorite_count?: number;
 }
 
 // Fixed definitions for categories and color families
@@ -344,8 +352,10 @@ export function setFeaturedIds(colorOfDay: string, editorsChoice: string) {
   EDITORS_CHOICE_ID = editorsChoice;
 }
 
+import { NEW_PALETTES } from "./new_palettes";
+
 // In-Memory Database for Phase 1 runtime
-let activePalettes = [...BASE_PALETTES];
+let activePalettes = [...BASE_PALETTES, ...NEW_PALETTES];
 
 export function getPalettes(): Palette[] {
   return activePalettes;

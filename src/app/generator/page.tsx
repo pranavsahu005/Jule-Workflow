@@ -429,7 +429,7 @@ export default function GeneratorPage() {
                     exportFormat === format ? "bg-white text-slate-900 shadow-3xs" : "text-slate-500 hover:text-slate-900"
                   }`}
                 >
-                  {format.toUpperCase() === "AI" ? "🤖 AI Instruction" : format.toUpperCase()}
+                  {format.toUpperCase() === "AI" ? "AI Instruction" : format.toUpperCase()}
                 </button>
               ))}
             </div>

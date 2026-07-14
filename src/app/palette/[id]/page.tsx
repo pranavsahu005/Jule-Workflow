@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { getPalettes, Palette } from "@/data/palettes";
 import PaletteCard from "@/components/PaletteCard";
+import DesignPreview from "@/components/DesignPreview";
 import {
   ArrowLeft,
   Copy,
@@ -258,6 +259,9 @@ export default function PaletteDetailPage({ params }: { params: Promise<{ id: st
               </p>
             </div>
           </div>
+
+          {/* New Interactive Design Preview section beneath swatch grid */}
+          <DesignPreview palette={palette} customRoles={roles} />
         </div>
 
         {/* Builder & Wireframe Preview Right Column */}
@@ -374,7 +378,7 @@ export default function PaletteDetailPage({ params }: { params: Promise<{ id: st
                 >
                   <div className="flex items-center gap-2">
                     <span className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] text-white" style={{ backgroundColor: roles.accent }}>
-                      ★
+                      <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     </span>
                     <span>WIRE LOGO</span>
                   </div>
@@ -486,7 +490,7 @@ export default function PaletteDetailPage({ params }: { params: Promise<{ id: st
                     exportFormat === "ai" ? "bg-white text-slate-900 shadow-3xs" : "text-slate-500 hover:text-slate-900"
                   }`}
                 >
-                  🤖 AI Agent Prompt
+                  AI Agent Prompt
                 </button>
               </div>
 

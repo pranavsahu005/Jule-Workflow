@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Copy, Check, Heart, Eye } from "lucide-react";
+import { Copy, Check, Heart, Eye, Layout, X } from "lucide-react";
 import { Palette } from "@/data/palettes";
+import DesignPreview from "./DesignPreview";
 
 interface PaletteCardProps {
   palette: Palette;
@@ -14,6 +15,7 @@ interface PaletteCardProps {
 export default function PaletteCard({ palette, onFavoriteToggle, isFavorited = false }: PaletteCardProps) {
   const [copied, setCopied] = useState(false);
   const [favorite, setFavorite] = useState(isFavorited);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
 
   // Sync state with prop updates safely without triggering sync effect errors
   React.useMemo(() => {
@@ -79,6 +81,18 @@ export default function PaletteCard({ palette, onFavoriteToggle, isFavorited = f
         {/* Floating action buttons on card */}
         <div className="absolute top-2.5 right-2.5 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
           <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setShowPreviewModal(true);
+            }}
+            className="p-2 rounded-full bg-white/90 backdrop-blur-xs text-slate-700 hover:bg-white hover:text-indigo-600 shadow-xs transition-colors"
+            title="Design Preview Mockup"
+          >
+            <Layout className="w-4 h-4" />
+          </button>
+
+          <button
             onClick={handleFavoriteClick}
             className={`p-2 rounded-full backdrop-blur-xs shadow-xs transition-colors ${
               favorite
@@ -136,6 +150,50 @@ export default function PaletteCard({ palette, onFavoriteToggle, isFavorited = f
           ))}
         </div>
       </div>
+      {/* Design Preview Modal */}
+      {showPreviewModal && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-slate-200 animate-in zoom-in-95 duration-200">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-slate-100 px-6 py-4 flex items-center justify-between z-10">
+              <div>
+                <h4 className="font-extrabold text-slate-900 text-base leading-none">
+                  Layout Preview: {palette.name}
+                </h4>
+                <p className="text-[11px] text-slate-400 font-bold mt-1">
+                  Mockup frame demonstrates role mappings live
+                </p>
+              </div>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowPreviewModal(false);
+                }}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              <DesignPreview palette={palette} />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="bg-slate-50 border-t border-slate-100 px-6 py-3.5 flex justify-between items-center text-xs">
+              <span className="text-slate-400 font-bold">Try custom roles in the palette detail page.</span>
+              <Link
+                href={`/palette/${palette.id}`}
+                className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg transition-colors"
+              >
+                Open Details
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

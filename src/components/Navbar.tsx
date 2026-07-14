@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, Menu, X, Heart, Sparkles, Image as ImageIcon, Layers, Home } from "lucide-react";
+import { Search, Menu, X, Heart, Sparkles, Image as ImageIcon, Layers, Home, Flame, BookOpen } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -23,6 +23,8 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/", icon: Home },
     { name: "Browse", href: "/browse", icon: Layers },
+    { name: "Gradients", href: "/gradients", icon: Flame },
+    { name: "Guides", href: "/guides", icon: BookOpen },
     { name: "Generator", href: "/generator", icon: Sparkles },
     { name: "Image Extractor", href: "/extractor", icon: ImageIcon },
     { name: "Favorites", href: "/favorites", icon: Heart },

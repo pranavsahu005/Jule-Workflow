@@ -5,11 +5,9 @@
 ▲ Next.js 16.2.10 (Turbopack)
 - Local:         http://localhost:3000
 - Network:       http://192.168.0.2:3000
-✓ Ready in 522ms
+✓ Ready in 598ms
 
 ○ Compiling / ...
- GET / 200 in 5.7s (next.js: 5.1s, application-code: 591ms)
- GET /palette/seed-8 200 in 1720ms (next.js: 1675ms, application-code: 45ms)
- GET /generator 200 in 670ms (next.js: 579ms, application-code: 91ms)
- GET /extractor 200 in 678ms (next.js: 580ms, application-code: 99ms)
- GET /favorites 200 in 619ms (next.js: 545ms, application-code: 74ms)
+ GET / 200 in 8.1s (next.js: 7.3s, application-code: 855ms)
+ GET /gradients 200 in 876ms (next.js: 686ms, application-code: 190ms)
+ GET /guides 200 in 893ms (next.js: 796ms, application-code: 97ms)

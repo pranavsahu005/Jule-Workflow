@@ -354,7 +354,7 @@ export default function ImageExtractorPage() {
                         exportFormat === format ? "bg-white text-slate-900 shadow-3xs" : "text-slate-500 hover:text-slate-900"
                       }`}
                     >
-                      {format === "ai" ? "🤖 AI Instruction" : format.toUpperCase()}
+                      {format === "ai" ? "AI Instruction" : format.toUpperCase()}
                     </button>
                   ))}
                 </div>

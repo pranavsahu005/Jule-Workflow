@@ -109,8 +109,8 @@ export default function DesignPreview({ palette, customRoles }: DesignPreviewPro
                 style={{ backgroundColor: roles.secondary, borderColor: roles.ui }}
               >
                 <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-lg flex items-center justify-center text-white" style={{ backgroundColor: roles.accent }}>
-                    ★
+                  <span className="w-6 h-6 rounded-lg flex items-center justify-center text-white text-[10px]" style={{ backgroundColor: roles.accent }}>
+                    <Star className="w-3.5 h-3.5 fill-current" />
                   </span>
                   <span className="tracking-tight uppercase">CREATIVE DESIGN</span>
                 </div>
@@ -250,7 +250,7 @@ export default function DesignPreview({ palette, customRoles }: DesignPreviewPro
                     className="w-11 h-11 rounded-full flex items-center justify-center text-white shadow-md active:scale-90 transition-transform"
                     style={{ backgroundColor: roles.accent }}
                   >
-                    ★
+                    <Star className="w-5 h-5 fill-current" />
                   </button>
                 </div>
 

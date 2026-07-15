@@ -424,7 +424,7 @@ export default function PaletteDetailPage({ params }: { params: Promise<{ id: st
                     style={{ backgroundColor: roles.secondary, borderColor: roles.ui }}
                   >
                     <span className="w-6 h-6 rounded-md flex items-center justify-center mb-2" style={{ backgroundColor: roles.accent, color: "#fff" }}>
-                      ✓
+                      <Check className="w-3.5 h-3.5 text-white" />
                     </span>
                     <h4 className="font-extrabold text-xs">Modern SaaS Widget</h4>
                     <p className="text-[10px] opacity-70 mt-1">Rendered beautifully using secondary containers to separate segments clearly.</p>
@@ -435,7 +435,7 @@ export default function PaletteDetailPage({ params }: { params: Promise<{ id: st
                     style={{ backgroundColor: roles.secondary, borderColor: roles.ui }}
                   >
                     <span className="w-6 h-6 rounded-md flex items-center justify-center mb-2" style={{ backgroundColor: roles.accent, color: "#fff" }}>
-                      ☼
+                      <Sparkles className="w-3.5 h-3.5 text-white fill-current" />
                     </span>
                     <h4 className="font-extrabold text-xs">High-Contrast Highlights</h4>
                     <p className="text-[10px] opacity-70 mt-1">Using accents selectively avoids decision fatigue and guides clients smoothly.</p>

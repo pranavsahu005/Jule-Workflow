@@ -170,41 +170,70 @@ function HomeContent() {
 
   const displayedPalettes = filteredPalettes.slice(0, visibleCount);
 
-  // Define horizontal mosaic colors representing platform's full range
-  const mosaicColors = [
-    "#FDFBF7", "#D4AF37", "#1A1A1A", "#9B111E", "#D2B48C", "#4B0082", "#E6E6FA", "#008080",
-    "#39FF14", "#FFD1DC", "#FF5F1F", "#0B1026", "#0D0E15", "#22C55E", "#F97316", "#050B05",
-    "#1E40AF", "#F59E0B", "#F43F5E", "#C2410C", "#15803D", "#3730A3", "#FAF5FF", "#E0F2FE",
-    "#00E5FF", "#FF1493", "#EAB308", "#A5B4FC", "#C0C0C0", "#0369A1", "#FACC15", "#111827",
-    "#C2410C", "#D9F99D", "#FAF9F6", "#EA580C", "#FAF5FF", "#E9D5FF", "#F472B6", "#2DD4BF"
-  ];
+  // Generate dynamic mosaic colors representing platform's full range on mount
+  const [mosaicSquares, setMosaicSquares] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (allPalettes.length > 0) {
+      const allColors = allPalettes.flatMap(p => p.colors);
+      if (allColors.length > 0) {
+        // Build a highly dense, randomized field of 450 colors
+        const pool = [];
+        for (let i = 0; i < 450; i++) {
+          pool.push(allColors[Math.floor(Math.random() * allColors.length)]);
+        }
+        setMosaicSquares(pool);
+      }
+    }
+  }, [allPalettes]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
 
-      {/* Horizontal Mosaic Brand Showcase Band */}
-      <div className="w-full overflow-hidden bg-slate-50 border border-slate-200 rounded-2xl p-2.5 relative flex flex-col gap-1 shadow-3xs">
-        <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 text-center mb-1 leading-none">
-          Live Mosaic Spectrum Showcase
-        </span>
-        <div className="flex gap-1 overflow-x-hidden select-none w-full justify-center">
-          <div className="flex gap-1 animate-[marquee_20s_linear_infinite] whitespace-nowrap">
-            {mosaicColors.concat(mosaicColors).map((color, idx) => (
-              <div
-                key={color + idx}
-                style={{ backgroundColor: color }}
-                className="w-4 h-4 rounded-xs shrink-0 transition-all duration-500 hover:scale-125"
-                title={color}
-              />
-            ))}
+      {/* Dense Animated Mosaic Spectrum Showcase Header Band */}
+      <div className="w-full overflow-hidden bg-slate-50 border border-slate-200 rounded-2xl p-3 relative flex flex-col gap-1.5 shadow-3xs">
+        <div className="flex justify-between items-center px-1.5 mb-1">
+          <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600 leading-none">
+            Live Mosaic Spectrum Showcase
+          </span>
+          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none">
+            Shifting across 10,000+ brand shades
+          </span>
+        </div>
+
+        <div className="overflow-hidden select-none w-full relative">
+          <div className="grid grid-rows-5 grid-flow-col gap-1 justify-center w-max mx-auto">
+            {mosaicSquares.length > 0 ? (
+              mosaicSquares.map((color, idx) => (
+                <div
+                  key={color + idx}
+                  style={{
+                    backgroundColor: color,
+                    animationDelay: `${(idx % 19) * -0.6}s`,
+                    animationDuration: `${14 + (idx % 13)}s`
+                  }}
+                  className="w-2.5 h-2.5 rounded-[1px] shrink-0 transition-all duration-1000 animate-[mosaicShift_infinite_ease-in-out] hover:scale-150 hover:z-10 relative cursor-pointer"
+                  title={color}
+                />
+              ))
+            ) : (
+              // Fallback skeleton
+              Array.from({ length: 150 }).map((_, idx) => (
+                <div
+                  key={idx}
+                  className="w-2.5 h-2.5 bg-slate-200 rounded-[1px] shrink-0 animate-pulse"
+                />
+              ))
+            )}
           </div>
         </div>
 
-        {/* CSS Keyframes for infinite mosaic marquee */}
+        {/* GPU-accelerated and smooth CSS Keyframes for living shifting mosaic effect */}
         <style jsx global>{`
-          @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
+          @keyframes mosaicShift {
+            0%, 100% { filter: hue-rotate(0deg) saturate(100%) brightness(100%); }
+            33% { filter: hue-rotate(35deg) saturate(105%) brightness(95%); }
+            66% { filter: hue-rotate(-35deg) saturate(95%) brightness(105%); }
           }
         `}</style>
       </div>

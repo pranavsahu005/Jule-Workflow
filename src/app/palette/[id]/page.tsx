@@ -248,6 +248,20 @@ export default function PaletteDetailPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
+            {/* Design Preview Trigger Button */}
+            <button
+              onClick={() => {
+                const element = document.getElementById("design-preview-section");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="w-full py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-extrabold text-xs rounded-xl transition-all duration-200 flex items-center justify-center gap-2 border border-indigo-100"
+            >
+              <Laptop className="w-4 h-4" />
+              Live Preview Layout
+            </button>
+
             {/* Description & Color Psychology */}
             <div className="bg-slate-50 p-4 rounded-xl space-y-2 border border-slate-100">
               <span className="text-[11px] font-extrabold text-indigo-600 uppercase tracking-widest block flex items-center gap-1">
@@ -261,7 +275,9 @@ export default function PaletteDetailPage({ params }: { params: Promise<{ id: st
           </div>
 
           {/* New Interactive Design Preview section beneath swatch grid */}
-          <DesignPreview palette={palette} customRoles={roles} />
+          <div id="design-preview-section" className="scroll-mt-20">
+            <DesignPreview palette={palette} customRoles={roles} />
+          </div>
         </div>
 
         {/* Builder & Wireframe Preview Right Column */}

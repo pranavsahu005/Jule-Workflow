@@ -5,7 +5,11 @@
 ▲ Next.js 16.2.10 (Turbopack)
 - Local:         http://localhost:3000
 - Network:       http://192.168.0.2:3000
-✓ Ready in 521ms
+✓ Ready in 538ms
 
-○ Compiling /palette/[id] ...
- GET /palette/seed-1 200 in 7.7s (next.js: 7.0s, application-code: 735ms)
+○ Compiling / ...
+ GET / 200 in 5.4s (next.js: 4.7s, application-code: 653ms)
+ GET /browse 200 in 953ms (next.js: 777ms, application-code: 176ms)
+ GET /gradients 200 in 665ms (next.js: 569ms, application-code: 95ms)
+ GET /guides 200 in 658ms (next.js: 566ms, application-code: 92ms)
+ GET /palette/seed-1 200 in 1537ms (next.js: 1432ms, application-code: 105ms)

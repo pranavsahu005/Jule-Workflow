@@ -1,3 +1,4 @@
+// HEXATOM Color Palette Expansion Data - Phase 2.5 Additive Expansion
 import { Palette } from "./palettes";
 
 // Helpers for HSL to HEX

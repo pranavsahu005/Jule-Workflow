@@ -1,3 +1,4 @@
+// HEXATOM Gradient Data and Library Generator - Phase 2.5 Additive Expansion
 export interface Gradient {
   id: string;
   name: string;

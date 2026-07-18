@@ -1,3 +1,4 @@
+// HEXATOM Color Palette Live Design Preview Component - Phase 2.5 Additive Expansion
 "use client";
 
 import React, { useState } from "react";

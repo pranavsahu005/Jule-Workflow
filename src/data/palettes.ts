@@ -89,6 +89,10 @@ function hexToHsl(hex: string): { h: number; s: number; l: number } {
 }
 
 function hslToHex(h: number, s: number, l: number): string {
+  // Clamp saturation and lightness to [0, 100]
+  s = Math.max(0, Math.min(100, s));
+  l = Math.max(0, Math.min(100, l));
+
   s /= 100;
   l /= 100;
   const c = (1 - Math.abs(2 * l - 1)) * s;
@@ -103,9 +107,14 @@ function hslToHex(h: number, s: number, l: number): string {
   else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
   else if (300 <= h && h < 360) { r = c; g = 0; b = x; }
 
-  const rHex = Math.round((r + m) * 255).toString(16).padStart(2, "0");
-  const gHex = Math.round((g + m) * 255).toString(16).padStart(2, "0");
-  const bHex = Math.round((b + m) * 255).toString(16).padStart(2, "0");
+  // Clamp final RGB values to [0, 255]
+  const rVal = Math.max(0, Math.min(255, Math.round((r + m) * 255)));
+  const gVal = Math.max(0, Math.min(255, Math.round((g + m) * 255)));
+  const bVal = Math.max(0, Math.min(255, Math.round((b + m) * 255)));
+
+  const rHex = rVal.toString(16).padStart(2, "0");
+  const gHex = gVal.toString(16).padStart(2, "0");
+  const bHex = bVal.toString(16).padStart(2, "0");
 
   return `#${rHex}${gHex}${bHex}`.toUpperCase();
 }
